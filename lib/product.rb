@@ -1,5 +1,10 @@
 # frozen_string_literal: true
+
+require 'modules/persistable'
+
 class Product
+  extend Persistable
+
   attr_reader :id, :name, :price
 
   def initialize(attributes = {})
