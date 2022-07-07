@@ -1,4 +1,5 @@
-require 'factory_bot'
+# frozen_string_literal: true
+require "factory_bot"
 
 # RSpec without Rails
 RSpec.configure do |config|
@@ -6,8 +7,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     FactoryBot.find_definitions
-    FactoryBot.define do
-      initialize_with { new(**attributes) }
-    end
+    FactoryBot.define { initialize_with { new(**attributes) } }
   end
 end

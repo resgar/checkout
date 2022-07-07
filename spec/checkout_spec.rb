@@ -1,23 +1,23 @@
 # frozen_string_literal: true
-require 'checkout'
-require 'promotion'
-require 'promotional_roles/min_quantity'
-require 'promotional_roles/min_spent'
+require "checkout"
+require "promotion"
+require "promotional_roles/min_quantity"
+require "promotional_roles/min_spent"
 
 describe Checkout do
-
   let(:checkout) { Checkout.new }
   let(:product) { build :product }
 
   describe "#scan" do
-
     it "adds the product to the list" do
       expect { checkout.scan(product) }.to change { checkout.all.count }.by(1)
     end
 
     it "doesn't add the product to the other checkout" do
       other_checkout = Checkout.new
-      expect { checkout.scan(product) }.not_to change { other_checkout.all.count }
+      expect { checkout.scan(product) }.not_to change {
+        other_checkout.all.count
+      }
     end
   end
 
@@ -32,6 +32,10 @@ describe Checkout do
     end
 
     context "with promotional roles" do
+      let(:p1) { build(:product, code: "001", price: 9.25) }
+      let(:p2) { build(:product, code: "002", price: 45.0) }
+      let(:p3) { build(:product, code: "003", price: 19.95) }
+
       it "calculates the total amount" do
         promotional_roles = Promotion.new
 
@@ -40,15 +44,11 @@ describe Checkout do
 
         co = Checkout.new(promotional_roles)
 
-        p1 = build(:product, code: '001', price: 9.25)
-        p2 = build(:product, code: '002', price: 45.0)
-        p3 = build(:product, code: '003', price: 19.95)
-        
         co.scan(p1)
         co.scan(p2)
         co.scan(p3)
         co.scan(p1)
-        
+
         final_price = 0.9 * (2 * 8.5 + p2.price + p3.price)
         expect(co.total).to eq(final_price)
       end

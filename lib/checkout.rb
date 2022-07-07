@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'modules/persistable'
+require "modules/persistable"
 
 class Checkout
   include Persistable

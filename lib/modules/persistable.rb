@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Persistable
   def create(item)
     collection << item

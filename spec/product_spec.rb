@@ -1,13 +1,12 @@
 # frozen_string_literal: true
-require 'product'
+require "product"
 
 describe Product do
-
   describe "#name" do
     let(:product) { build :product }
 
     it "returns the name of a product" do
-      expect(product.name).to eq('Lavender heart')
+      expect(product.name).to eq("Lavender heart")
     end
   end
 
@@ -19,7 +18,9 @@ describe Product do
 
   describe "#create" do
     it "create a new product" do
-      expect { Product.create(code: '001', name: 'Lavender heart', price: 9.25) }.to change { Product.all.count }.by(1)      
+      expect {
+        Product.create(code: "001", name: "Lavender heart", price: 9.25)
+      }.to change { Product.all.count }.by(1)
     end
   end
 end
