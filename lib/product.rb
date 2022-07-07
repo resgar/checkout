@@ -5,10 +5,10 @@ require 'modules/persistable'
 class Product
   extend Persistable
 
-  attr_reader :id, :name, :price
+  attr_reader :code, :name, :price
 
   def initialize(attributes = {})
-    @id = attributes.fetch(:id)
+    @code = attributes.fetch(:code)
     @name = attributes.fetch(:name)
     @price = attributes.fetch(:price)
   end

@@ -19,7 +19,7 @@ describe Product do
 
   describe "#create" do
     it "create a new product" do
-      expect { Product.create(id: 1, name: 'Lavender heart', price: 9.25) }.to change { Product.all.count }.by(1)      
+      expect { Product.create(code: '001', name: 'Lavender heart', price: 9.25) }.to change { Product.all.count }.by(1)      
     end
   end
 end
